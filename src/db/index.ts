@@ -1,6 +1,6 @@
 import {Sequelize} from "sequelize-typescript";
 import { Transaction } from "./models/Transaction.model";
-import config from "../config";
+import config from "../common/config";
 
 const sequelize = new Sequelize({
     dialect: 'postgres',
