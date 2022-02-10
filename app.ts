@@ -1,11 +1,5 @@
-import express from 'express';
-const app = express();
-const port = 3000;
+import {Server} from "./src/server";
+import {ExchangeControllers} from './src/modules/exchange/controllers/exchange.controller';
+import { TransactionController } from "./src/modules/transactions/controllers/transaction.controller";
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
-});
+export const app = new Server([new ExchangeControllers, new TransactionController])
