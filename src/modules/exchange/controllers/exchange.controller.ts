@@ -10,8 +10,8 @@ export class ExchangeControllers extends BaseControllers {
         this._initializeRoutes();
     }
     private  _initializeRoutes(){
-        this.router.get('/healthCheck', this.healthCheck);
-        this.router.post('/exchange',  this.exchangeCurrency);
+        this.router.get(`${this.path}/healthCheck`, this.healthCheck);
+        this.router.post(`${this.path}/exchange`,  this.exchangeCurrency);
     }
     private healthCheck(req:Request, res: Response){
         return res.status(200).send({success:'true'})

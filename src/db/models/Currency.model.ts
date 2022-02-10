@@ -1,5 +1,5 @@
-import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { Optional } from "sequelize/types";
+import { Column,  Model, PrimaryKey, Table } from "sequelize-typescript";
+import { DataTypes, Optional } from "sequelize";
 
 
 export interface ICurrencyAttributes {
@@ -12,12 +12,13 @@ export type ICreateCurrencyAttributes = Optional<ICurrencyAttributes, "id">
 
 @Table
 export class Currency extends Model<ICurrencyAttributes, ICreateCurrencyAttributes> {
-    @Column
+    
     @PrimaryKey
+    @Column
     id: number;
 
     @Column({
-        type:DataType.CHAR,
+        type:DataTypes.CHAR,
         allowNull: false,
     })
     currencyCode: string;

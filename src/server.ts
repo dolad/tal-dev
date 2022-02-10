@@ -1,4 +1,5 @@
 import express from 'express';
+import { sequelize } from './db';
 export class Server {
     public app: any;
     public port = 3000;
@@ -9,13 +10,15 @@ export class Server {
         this.loadControllers(controllers)
     }
 
-    private _initConfig(){
+    private async _initConfig(){
         this.app.use(express.json());
+        await sequelize.sync({force: true});
+        
     }
 
     private loadControllers(controllers:any){
         for (const controller of controllers){
-            this.app.use('api/v1', controller.router);
+            this.app.use('/', controller.router);
         }
     }
 

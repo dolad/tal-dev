@@ -1,5 +1,5 @@
 import { BaseControllers } from "../../../common/controller/base.controller";
-import { ICreateTransactionAttributes, ITransactionAttributes, Transaction } from "../../../db/models/Transaction.model";
+import { ITransactionAttributes} from "../../../db/models/Transaction.model";
 import { TransactionServices } from "../services/transaction.service";
 
 export class TransactionController extends BaseControllers {
@@ -9,7 +9,7 @@ export class TransactionController extends BaseControllers {
     }
 
     private _initializeRoutes(){
-        this.router.get('/transactions', this.getTransactions);
+        this.router.get(`${this.path}/transaction`, this.getTransactions);
     }
 
     private async getTransactions(): Promise<ITransactionAttributes[]> {
