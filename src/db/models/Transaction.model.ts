@@ -11,10 +11,11 @@ export interface ITransactionAttributes {
     exchangeFromUsdRate: number;
     exchangeToUsdRate: number;
     exchangeFromCurrency: string;
-    createdDate: Date;
+    exchangeToCurrency: string;
+    creationDate: Date;
 }
 
-export type ICreateTransactionAttributes = Optional<ITransactionAttributes, "id" | "createdDate" >
+export type ICreateTransactionAttributes = Optional<ITransactionAttributes, "id">
 
 
 
