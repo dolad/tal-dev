@@ -7,7 +7,9 @@ export class ExchangeService {
 
     async exchangeCurrency(payload: IExchageInput): Promise<ITransactionAttributes>{
      const {amount, date, baseCurrency, targetCurrency} = payload;
+     console.log(targetCurrency);
      await this.validateSupportForCurrency(baseCurrency);
+     console.log(targetCurrency);
      await this.validateSupportForCurrency(targetCurrency); 
      const {baseUsdRate, targetUsdRate} = await this.fetchUsdRate({baseCurrency, targetCurrency});
      const convertedAmount = this.calculateExchange({
@@ -31,12 +33,13 @@ export class ExchangeService {
 
     }
     private async validateSupportForCurrency(currencyCode: string) : Promise<boolean> {
+        const currency = await Currency.findAll();
+        console.log(currency);
         const isSupportedCurrency = await Currency.findOne({
             where: {
                 currencyCode,
             }
         })
-
         if(!isSupportedCurrency) throw new Error("Sorry we do not support one of your currency curency at this time");
         
         return true;
